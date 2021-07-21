@@ -2,8 +2,7 @@ name: Deploy to Preview Channel
 
 on:
   pull_request:
-
-    - https://musikmedia-epizy.firebaseapp.com/
+  
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
