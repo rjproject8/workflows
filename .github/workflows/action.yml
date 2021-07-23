@@ -12,7 +12,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.github-action@musikmedia-epizy.iam.gserviceaccount.com }}"
+          firebaseServiceAccount: "${{ secrets.github-action}}"
           expires: 30d
           projectId: musikmedia-epizy
 
