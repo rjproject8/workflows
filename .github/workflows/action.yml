@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.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 }}"
+          repoToken: "${{ secrets.ACTION_GITHUB }}"
           firebaseServiceAccount: "${{ secrets.github-action }}"
           expires: 30d
           projectId: musikmedia-epizy
