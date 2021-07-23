@@ -1,7 +1,8 @@
 name: Deploy to Preview Channel
 
 on:
-  pull_request:
+  - pull_request
+  - push
   
 jobs:
   build_and_preview:
