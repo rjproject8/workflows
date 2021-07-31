@@ -1,18 +1,32 @@
-name: Deploy to Preview Channel
+name: Deploy to Google
 
+# Run this workflow every time a new commit pushed to your repository
 on:
-  - pull_request
-  - push
-  
-jobs:
-  build_and_preview:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.ACTION_GITHUB }}"
-          firebaseServiceAccount: "${{ secrets.github-action }}"
-          expires: 30d
-          projectId: musikmedia-epizy
+  push:
+    branches: [ master ]
 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./functions
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install libraries
+      run: npm install
+      working-directory: ${{env.working-directory}}
+    - name: install firebase
+      run: npm i firebase-tools -g  
+    - name: deploy
+      run: firebase deploy --token ${{ secrets.GCLOUD_TOKEN }}
